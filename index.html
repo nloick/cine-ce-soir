@@ -610,7 +610,7 @@ function providersOf(d) {
 function uniqueProviders(list) {
   const seenNames = new Set();
   return list.filter((p) => {
-    const name = p.provider_name.replace(/\s*(standard )?with ads$|\s*amazon channel$/i, "").toLowerCase();
+    const name = p.provider_name.toLowerCase().replace(/\+/g, " plus").replace(/\b(standard|with ads|amazon channel|premium|basic)\b/g, "").replace(/\s+/g, " ").trim();
     if (seenNames.has(name)) return false;
     seenNames.add(name);
     return true;
